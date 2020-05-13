@@ -18,8 +18,8 @@ package org.evoleq.ktorx.client.request
 import io.ktor.client.HttpClient
 import io.ktor.client.request.HttpRequestBuilder
 import kotlinx.serialization.KSerializer
-import org.drx.evoleq.type.KlScopedSuspendedState
 import org.evoleq.math.cat.suspend.monad.result.Result
+import org.evoleq.math.cat.suspend.monad.state.KlScopedSuspendedState
 
 typealias Request<I, O> = KlScopedSuspendedState<HttpClient, I, Result<O, Throwable>>
 

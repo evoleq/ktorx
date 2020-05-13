@@ -2,9 +2,9 @@ package org.evoleq.ktorx.client.request
 
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.coroutineScope
-import org.drx.evoleq.type.ScopedSuspended
-import org.drx.evoleq.type.by
 import org.evoleq.math.cat.monad.result.Result
+import org.evoleq.math.cat.suspend.morhism.ScopedSuspended
+import org.evoleq.math.cat.suspend.morhism.by
 
 suspend fun <I, O> HttpClient.byRequest(
     request: Request<I, O>

@@ -6,8 +6,8 @@ import io.ktor.client.features.websocket.WebSockets
 import io.ktor.http.cio.websocket.WebSocketSession
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.CoroutineScope
-import org.drx.evoleq.type.KlScopedSuspendedState
-import org.drx.evoleq.type.ScopedSuspendedState
+import org.evoleq.math.cat.suspend.monad.state.KlScopedSuspendedState
+import org.evoleq.math.cat.suspend.monad.state.ScopedSuspendedState
 
 @KtorExperimentalAPI
 val client = HttpClient(Js){
@@ -15,7 +15,7 @@ val client = HttpClient(Js){
 }
 
 typealias WebSocketSessionState<T> = ScopedSuspendedState<WebSocketSession, T>
-typealias KLWebSocketSessionState<S, T> = KlScopedSuspendedState<WebSocketSession,S, T>
+typealias KLWebSocketSessionState<S, T> = KlScopedSuspendedState<WebSocketSession, S, T>
 
 
 fun <T> WebSocketSessionState(
