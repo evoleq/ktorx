@@ -18,8 +18,8 @@ package org.evoleq.ktorx.client.request
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.coroutineScope
 import org.evoleq.math.cat.suspend.monad.result.Result
-import org.evoleq.math.cat.suspend.morhism.ScopedSuspended
-import org.evoleq.math.cat.suspend.morhism.by
+import org.evoleq.math.cat.suspend.morphism.ScopedSuspended
+import org.evoleq.math.cat.suspend.morphism.by
 
 suspend fun <I, O> HttpClient.byRequest(
     request: Request<I, O>
