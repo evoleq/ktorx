@@ -2,13 +2,13 @@
 
 plugins {
     //java
-    kotlin("multiplatform") version "1.3.70"
+    kotlin("multiplatform") version Config.Versions.kotlinMppPlugin
     id ("com.github.hierynomus.license") version "0.15.0"
     `maven-publish`
     maven
     id ("com.jfrog.bintray") version "1.8.0"
     id("org.jetbrains.dokka") version "0.9.17"
-    kotlin("plugin.serialization") version "1.3.70"
+    kotlin("plugin.serialization") version Config.Versions.kotlinSerializationPlugin
 }
 
 group = Config.Projects.Ktorx.group
@@ -29,15 +29,15 @@ kotlin {
         dependencies {
             implementation(kotlin("stdlib-jdk8"))
             implementation(kotlin("reflect"))
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Config.Versions.coroutines}")
     
             // evoleq
             implementation( Config.Dependencies.evoleqCore )
-            implementation("org.evoleq:mathcat-result-jvm:1.0.0")
-            implementation("org.evoleq:mathcat-core-jvm:1.0.0")
-            implementation("org.evoleq:mathcat-structure-jvm:1.0.0")
-            implementation("org.evoleq:mathcat-morphism-jvm:1.0.0")
-            implementation("org.evoleq:mathcat-state-jvm:1.0.0")
+            implementation("org.evoleq:mathcat-result-jvm:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-core-jvm:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-structure-jvm:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-morphism-jvm:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-state-jvm:${Config.Versions.mathcat}")
             
             implementation(Config.Dependencies.kotlinSerializationRuntime)
             
@@ -62,17 +62,17 @@ kotlin {
         dependencies {
             //implementation(kotlin("js"))
             implementation(kotlin("reflect"))
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.5")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Config.Versions.coroutines}")
     
             implementation(Config.Dependencies.kotlinSerializationRuntime)
     
             // evoleq
             implementation( Config.Dependencies.evoleqCoreJs )
-            implementation("org.evoleq:mathcat-result-js:1.0.0")
-            implementation("org.evoleq:mathcat-core-js:1.0.0")
-            implementation("org.evoleq:mathcat-structure-js:1.0.0")
-            implementation("org.evoleq:mathcat-morphism-js:1.0.0")
-            implementation("org.evoleq:mathcat-state-js:1.0.0")
+            implementation("org.evoleq:mathcat-result-js:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-core-js:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-structure-js:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-morphism-js:${Config.Versions.mathcat}")
+            implementation("org.evoleq:mathcat-state-js:${Config.Versions.mathcat}")
             
             implementation("io.ktor:ktor-websockets:${Config.Versions.ktor}")
             implementation("io.ktor:ktor-client-core:${Config.Versions.ktor}")
@@ -89,9 +89,11 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 implementation(kotlin("reflect"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Config.Versions.coroutines}")
                 implementation( Config.Dependencies.kotlinSerializationRuntimeCommon )
     
+                //implementation("org.jetbrains.kotlinx:kotlinx-serialization-cbor:${Config.Versions.kotlinSerialization}")
+                
                 //implementation("io.ktor:ktor-websockets:${Config.Versions.ktor}")
                 /*
                 implementation("io.ktor:ktor-client-core:${Config.Versions.ktor}")
@@ -134,3 +136,5 @@ tasks{
         finalizedBy(licenseFormatJsMain, licenseFormatCommonMain)
     }
 }
+
+apply(from = "../publish.mpp.gradle.kts")
