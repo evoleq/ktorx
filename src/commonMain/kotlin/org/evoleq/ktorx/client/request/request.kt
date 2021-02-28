@@ -15,8 +15,8 @@
  */
 package org.evoleq.ktorx.client.request
 
-import io.ktor.client.HttpClient
-import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.*
+import io.ktor.client.request.*
 import kotlinx.serialization.KSerializer
 import org.evoleq.math.cat.suspend.monad.result.Result
 import org.evoleq.math.cat.suspend.monad.state.KlScopedSuspendedState
