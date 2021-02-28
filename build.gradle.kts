@@ -93,6 +93,20 @@ kotlin {
 
                 // kotlin serialization
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Config.Versions.kotlinSerialization}")
+    
+                // evoleq
+                implementation("org.evoleq:mathcat-result:${Config.Versions.mathcat}")
+                implementation("org.evoleq:mathcat-core:${Config.Versions.mathcat}")
+                implementation("org.evoleq:mathcat-structure:${Config.Versions.mathcat}")
+                implementation("org.evoleq:mathcat-morphism:${Config.Versions.mathcat}")
+                implementation("org.evoleq:mathcat-state:${Config.Versions.mathcat}")
+    
+                // ktor
+                implementation("io.ktor:ktor-client-websockets:${Config.Versions.ktor}")
+                implementation("io.ktor:ktor-client-core:${Config.Versions.ktor}")
+                //implementation("io.ktor:ktor-client-cio:${Config.Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization:${Config.Versions.ktor}")
+                implementation("io.ktor:ktor-client-json:${Config.Versions.ktor}")
             }
         }
         val commonTest by getting {

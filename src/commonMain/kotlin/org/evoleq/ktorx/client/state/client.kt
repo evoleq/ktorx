@@ -13,36 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.evoleq.ktorx.client
+package org.evoleq.ktorx.client.state
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.js.Js
-import io.ktor.client.features.websocket.WebSockets
-import io.ktor.http.cio.websocket.WebSocketSession
-import io.ktor.util.KtorExperimentalAPI
+import io.ktor.client.*
 import kotlinx.coroutines.CoroutineScope
+import org.evoleq.ktorx.marker.KtorxDsl
 import org.evoleq.math.cat.suspend.monad.state.KlScopedSuspendedState
 import org.evoleq.math.cat.suspend.monad.state.ScopedSuspendedState
 
-@KtorExperimentalAPI
-val client = HttpClient(Js){
-    install(WebSockets)
-}
+typealias HttpClientState<T> = ScopedSuspendedState<HttpClient, T>
+typealias KlHttpClientState<S, T> = KlScopedSuspendedState<HttpClient, S, T>
 
-typealias WebSocketSessionState<T> = ScopedSuspendedState<WebSocketSession, T>
-typealias KLWebSocketSessionState<S, T> = KlScopedSuspendedState<WebSocketSession, S, T>
-
-
-fun <T> WebSocketSessionState(
-    state: suspend CoroutineScope.(WebSocketSession)->Pair<T, WebSocketSession>
-): WebSocketSessionState<T> =
+@Suppress("FunctionName")
+@KtorxDsl
+fun <T> HttpClientState(
+    state: suspend CoroutineScope.(HttpClient)->Pair<T, HttpClient>
+): HttpClientState<T> =
     ScopedSuspendedState{
-        session -> state(session)
+            session -> state(session)
     }
 
-fun <S, T> KLWebSocketSessionState(
-    kleisli: suspend CoroutineScope.(S)-> WebSocketSessionState<T>
-): KLWebSocketSessionState<S, T> =
+@KtorxDsl
+@Suppress("FunctionName")
+fun <S, T> KLHttpClientState(
+    kleisli: suspend CoroutineScope.(S)-> HttpClientState<T>
+): KlHttpClientState<S, T> =
     KlScopedSuspendedState{
-        data -> kleisli(data)
+            data -> kleisli(data)
     }

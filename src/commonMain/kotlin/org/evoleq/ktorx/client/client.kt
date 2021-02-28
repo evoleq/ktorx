@@ -1,3 +1,4 @@
+
 /**
  * Copyright (c) 2020 Dr. Florian Schmidt
  *
@@ -16,13 +17,5 @@
 package org.evoleq.ktorx.client
 
 import io.ktor.client.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
 
-actual suspend fun <T> withClient(request: suspend HttpClient.()->T): T = with(HttpClient() {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer()
-    }
-}) {
-    request()
-}
+expect suspend fun <T> withClient(request: suspend HttpClient.()->T): T

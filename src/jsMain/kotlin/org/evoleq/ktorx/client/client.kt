@@ -15,12 +15,12 @@
  */
 package org.evoleq.ktorx.client
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.js.Js
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.*
+import io.ktor.client.engine.js.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
 
-suspend fun <T> withClient(request: suspend HttpClient.()->T): T = with(HttpClient(Js) {
+actual suspend fun <T> withClient(request: suspend HttpClient.()->T): T = with(HttpClient(Js) {
     install(JsonFeature) {
         serializer = KotlinxSerializer()
     }

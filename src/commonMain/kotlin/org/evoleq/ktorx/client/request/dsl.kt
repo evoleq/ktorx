@@ -15,7 +15,7 @@
  */
 package org.evoleq.ktorx.client.request
 
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import kotlinx.coroutines.coroutineScope
 import org.evoleq.math.cat.suspend.monad.result.Result
 import org.evoleq.math.cat.suspend.morphism.ScopedSuspended
