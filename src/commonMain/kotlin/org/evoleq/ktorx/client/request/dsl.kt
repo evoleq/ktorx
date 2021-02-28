@@ -28,5 +28,5 @@ suspend fun <I, O> HttpClient.byRequest(
             i -> by(by(request)(i))(this@byRequest)
     }
 
-suspend fun <I, O> ScopedSuspended<I, Pair<Result<O, Throwable>, HttpClient>>.on(input: I): Pair<Result<O, Throwable>, HttpClient> =
+suspend infix fun <I, O> ScopedSuspended<I, Pair<Result<O, Throwable>, HttpClient>>.on(input: I): Pair<Result<O, Throwable>, HttpClient> =
     coroutineScope{ by(this@on)(input)}
